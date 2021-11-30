@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Text, TextInput } from "react-native";
+import { View, TextInput } from "react-native";
+import TextDefault from "../TextDefault/TextDefault";
 
 export default function TextField({ label, ...inputProps }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>{label}</Text>
+      <TextDefault style={styles.label}>{label}</TextDefault>
       <TextInput style={styles.input} {...inputProps} />
     </View>
   );
