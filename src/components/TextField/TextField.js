@@ -1,12 +1,12 @@
 import React from "react";
 import { View, TextInput } from "react-native";
-import TextDefault from "../TextDefault/TextDefault";
 
-export default function TextField({ label, ...inputProps }) {
+export default function TextField({ error, label, ...inputProps }) {
   return (
     <View style={styles.container}>
-      <TextDefault style={styles.label}>{label}</TextDefault>
+      <Text style={styles.label}>{label}</Text>
       <TextInput style={styles.input} {...inputProps} />
+      {!!error && <Text style={styles.errorMessage}>{error.message}</Text>}
     </View>
   );
 }
