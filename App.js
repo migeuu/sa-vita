@@ -1,13 +1,16 @@
-import React from "react";
-import { StatusBar } from "react-native";
+import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { Login } from "./src/screens/Login/Login";
-import DrawerComponent from "./src/components/DrawerComponent/Drawer";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import DrawerComponent from "./src/components/DrawerComponent/Drawer"
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
     <NavigationContainer>
       <DrawerComponent />
     </NavigationContainer>
   );
 }
+
+export default App;
