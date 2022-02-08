@@ -6,14 +6,27 @@ import MensagensScreen from "../../screens/MensagensScreen/MensagensScreen";
 import PerfilScreen from "../../screens/PerfilScreen/PerfilScreen";
 import SettingsScreen from "../../screens/SettingsScreen/SettingsScreen";
 import CustomDrawer from "../CustomDrawer/CustomDrawer";
+import { useTheme } from "@react-navigation/native";
+import Header from "../Header/Header";
 
 const Drawer = createDrawerNavigator();
 
 const DrawerComponent = () => {
+  const { colors } = useTheme();
+
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawer {...props} />}
       initialRouteName="Home"
+      screenOptions={{
+        headerTitle: () => <Header />,
+        headerTintColor: colors.text,
+        headerStyle: {
+          height: 80,
+          backgroundColor: colors.background,
+        },
+        headerTitleAlign: "center",
+      }}
     >
       <Drawer.Screen name="Home" component={HomeScreen}></Drawer.Screen>
       <Drawer.Screen
