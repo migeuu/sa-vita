@@ -10,7 +10,7 @@ import { useTheme } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
-const HomeScreenComponent = () => {
+const MainScreen = () => {
   const { colors } = useTheme();
 
   return (
@@ -26,11 +26,13 @@ const HomeScreen = () => {
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: false,
+        tabBarActiveTintColor: "#00c4cc",
+        tabBarInactiveTintColor: "#3d3d3d",
         tabBarIcon: ({ color }) => {
           let iconName;
 
           switch (route.name) {
-            case "Home":
+            case "Main":
               iconName = "home";
               break;
             case "Propostas":
@@ -50,13 +52,13 @@ const HomeScreen = () => {
               break;
           }
 
-          return <Icon name={iconName} size={24} color={color} />;
+          return (
+            <Icon name={iconName} size={24} color={color} />
+          );
         },
-        activeTintColor: "#00c4cc",
-        inactiveTintColor: "#777",
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreenComponent} />
+      <Tab.Screen name="Main" component={MainScreen} />
       <Tab.Screen name="Propostas" component={PropostasScreen} />
       <Tab.Screen name="Mensagens" component={MensagensScreen} />
       <Tab.Screen name="Perfil" component={PerfilScreen} />
