@@ -6,13 +6,16 @@ import SettingsScreen from "../SettingsScreen/SettingsScreen";
 import PropostasScreen from "../PropostasScreen/PropostasScreen";
 import Icon from "react-native-vector-icons/Feather";
 import { View, Text } from "react-native";
+import { useTheme } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
 const HomeScreenComponent = () => {
+  const { colors } = useTheme();
+
   return (
     <View>
-      <Text>ola tudo bem</Text>
+      <Text style={{ color: colors.text }}>ola tudo bem</Text>
     </View>
   );
 };
@@ -22,7 +25,8 @@ const HomeScreen = () => {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarIcon: ({ color, size }) => {
+        tabBarShowLabel: false,
+        tabBarIcon: ({ color }) => {
           let iconName;
 
           switch (route.name) {
@@ -48,11 +52,9 @@ const HomeScreen = () => {
 
           return <Icon name={iconName} size={24} color={color} />;
         },
-      })}
-      tabBarOptions={{
         activeTintColor: "#00c4cc",
         inactiveTintColor: "#777",
-      }}
+      })}
     >
       <Tab.Screen name="Home" component={HomeScreenComponent} />
       <Tab.Screen name="Propostas" component={PropostasScreen} />
