@@ -1,13 +1,17 @@
 import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import DrawerComponent from "./src/components/DrawerComponent/Drawer"
-
-const Stack = createNativeStackNavigator();
+import { useColorScheme } from "react-native";
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from "@react-navigation/native";
+import DrawerComponent from "./src/components/DrawerComponent/Drawer";
 
 function App() {
+  const scheme = useColorScheme();
+
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
       <DrawerComponent />
     </NavigationContainer>
   );
