@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 0,
+    backgroundColor : "#EFFAFF"
   },
   profileContainer: {
     padding: 20,
@@ -15,14 +16,19 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   profileName: {
-    color: '#fff',
+    width : "100%",
+    color: '#545454',
     fontSize: 18,
+    paddingLeft : 10,
+    marginTop : 10,
     fontWeight: "bold",
   },
   profileDetails: {
-    color: '#fff',
+    width : "100%",
+    color: '#545454',
     fontSize: 14,
+    paddingLeft : 10,
+    marginBottom : 10
   },
 });
-
 export default styles;

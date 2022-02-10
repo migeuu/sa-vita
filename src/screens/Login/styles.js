@@ -1,12 +1,18 @@
+import React from "react";
 import { StyleSheet } from "react-native";
 import { themeSchema } from "../../themes/themeSchema";
 
-export default StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  containerLight: {
     backgroundColor: themeSchema.colors.bgLight,
+  },
+  containerDark: {
+    backgroundColor: themeSchema.colors.bgDark,
   },
   boxLogo: {
     alignItems: "center",
@@ -46,8 +52,8 @@ export default StyleSheet.create({
     height: 40,
     paddingBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: themeSchema.inputColor.bgLight,
-    color: "#222",
+    borderBottomColor: themeSchema.inputColor.primary,
+    color: "#ffffff",
     fontSize: 16,
   },
   error: {
@@ -77,7 +83,13 @@ export default StyleSheet.create({
   },
   buttonText: {
     fontSize: 22,
-    color: themeSchema.colors.bgLight,
+    color: themeSchema.colors.bg,
     fontWeight: "bold",
   },
 });
+
+export default ({ children, style }) => {
+  const { theme } = React.useContext;
+
+  return
+};
