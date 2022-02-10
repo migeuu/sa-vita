@@ -5,32 +5,33 @@ import CustomDrawer from "../CustomDrawer/CustomDrawer";
 import Ionicons from "react-native-vector-icons/Ionicons"
 
 import HomeScreen from "../../screens/HomeScreen/HomeScreen";
-import PropostasScreen from "../../screens/PropostasScreen/PropostasScreen";
 import MensagensScreen from "../../screens/MensagensScreen/MensagensScreen";
 import PerfilScreen from "../../screens/PerfilScreen/PerfilScreen";
 import SettingsScreen from "../../screens/SettingsScreen/SettingsScreen";
-import PoliticaPrivacidade from "../../screens/PoliticaPrivacidade/PoliticaPrivacidadeScreen";
+import CustomDrawer from "../CustomDrawer/CustomDrawer";
+import { useTheme } from "@react-navigation/native";
+import Header from "../Header/Header";
 
 const Drawer = createDrawerNavigator();
 
 const DrawerComponent = () => {
-  return (
-    <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props} />} initialRouteName="Home">
+  const { colors } = useTheme();
 
-      <Drawer.Screen 
-        name="Home" component={HomeScreen} options={{
-          DrawerIcon: ({color}) => (
-            <Ionicons name="home-outline" size={22} color={color}/>
-          )
-        }}  
-      /> 
-      <Drawer.Screen 
-        name="Propostas" component={PropostasScreen} options={{
-          DrawerIcon: ({color}) => (
-            <Ionicons name="timer-outline" size={22} color={color}/>
-          )
-        }}
-      />
+  return (
+    <Drawer.Navigator
+      drawerContent={(props) => <CustomDrawer {...props} />}
+      initialRouteName="Home"
+      screenOptions={{
+        headerTitle: () => <Header />,
+        headerTintColor: colors.text,
+        headerStyle: {
+          height: 80,
+          backgroundColor: colors.background,
+        },
+        headerTitleAlign: "center",
+      }}
+    >
+      <Drawer.Screen name="Home" component={HomeScreen}></Drawer.Screen>
       <Drawer.Screen
         name="Mensagens" component={MensagensScreen} options={{
           DrawerIcon: ({color}) => (
