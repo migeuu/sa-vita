@@ -7,6 +7,7 @@ import PropostasScreen from "../PropostasScreen/PropostasScreen";
 import Icon from "react-native-vector-icons/Feather";
 import { View, Text } from "react-native";
 import { useTheme } from "@react-navigation/native";
+import Post from "../../components/Post/Post";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,6 +17,7 @@ const MainScreen = () => {
   return (
     <View>
       <Text style={{ color: colors.text }}>Tela de mensagens 💓</Text>
+      <Post title="Post test" username="Miguel Marquiori" />
     </View>
   );
 };
@@ -52,9 +54,7 @@ const HomeScreen = () => {
               break;
           }
 
-          return (
-            <Icon name={iconName} size={24} color={color} />
-          );
+          return <Icon name={iconName} size={24} color={color} />;
         },
       })}
     >
