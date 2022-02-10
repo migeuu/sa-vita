@@ -15,7 +15,7 @@ const MainScreen = () => {
 
   return (
     <View>
-      <Text style={{ color: colors.text }}>ola tudo bem</Text>
+      <Text style={{ color: colors.text }}>Tela de mensagens 💓</Text>
     </View>
   );
 };
