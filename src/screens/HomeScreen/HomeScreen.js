@@ -5,19 +5,24 @@ import PerfilScreen from "../PerfilScreen/PerfilScreen";
 import SettingsScreen from "../SettingsScreen/SettingsScreen";
 import PropostasScreen from "../PropostasScreen/PropostasScreen";
 import Icon from "react-native-vector-icons/Feather";
-import { View, Text } from "react-native";
-import { useTheme } from "@react-navigation/native";
+import { View } from "react-native";
 import Post from "../../components/Post/Post";
 
 const Tab = createBottomTabNavigator();
 
 const MainScreen = () => {
-  const { colors } = useTheme();
-
   return (
     <View>
-      <Text style={{ color: colors.text }}>Tela de mensagens 💓</Text>
-      <Post title="Post test" username="Miguel Marquiori" />
+      <Post
+        title="Desenvolvedor Front-end ReactJS"
+        username="Miguel Marquiori"
+        description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio dolorum quo
+        optio. Blanditiis provident officia culpa fugit tempore aspernatur autem
+        ut corrupti? Impedit, tempora mollitia!"
+        requirements="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio dolorum quo
+        optio. Blanditiis provident officia culpa fugit tempore aspernatur autem
+        ut corrupti? Impedit, tempora mollitia!"
+      />
     </View>
   );
 };
