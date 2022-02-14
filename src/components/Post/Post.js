@@ -8,9 +8,14 @@ import {
   Appearance,
 } from "react-native";
 import SoniaImage from "../../../assets/images/sonia.jpg";
+import BrunoImage from "../../../assets/images/brunin.jpg";
 import Icon from "react-native-vector-icons/Feather";
 import { useTheme } from "@react-navigation/native";
+
+// COMPONENTS
 import LikeButton from "../LikeButton/LikeButton.jsx";
+import CommentButton from "../CommentButton/CommentButton";
+import ShareButton from "../ShareButton/ShareButton";
 
 const colorScheme = Appearance.getColorScheme();
 
@@ -30,7 +35,7 @@ const Post = (props) => {
         ]}
       >
         <View style={styles.profileContainer}>
-          <Image source={SoniaImage} style={styles.profileImage} />
+          <Image source={BrunoImage} style={styles.profileImage} />
           <Text style={[styles.profileUsername, { color: colors.text }]}>
             {props.username}
           </Text>
@@ -63,7 +68,11 @@ const Post = (props) => {
             : { borderTopColor: "#e9e9e9" },
         ]}
       >
-        <LikeButton />
+        <View style={styles.footerItems}>
+          <LikeButton />
+          <CommentButton />
+        </View>
+        <ShareButton />
       </View>
     </View>
   );
@@ -109,8 +118,13 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   footerContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     borderTopWidth: 1,
     padding: 10,
+  },
+  footerItems: {
+    flexDirection: "row",
   },
 });
 
