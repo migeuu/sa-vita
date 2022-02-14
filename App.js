@@ -1,13 +1,20 @@
-import React from "react";
-import { StatusBar } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { Login } from "./src/screens/Login/Login";
-import DrawerComponent from "./src/components/DrawerComponent/Drawer";
+import * as React from "react";
+import { useColorScheme } from "react-native";
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from "@react-navigation/native";
+import TabComponent from "./src/screens/TabComponent/TabComponent";
 
-export default function App() {
+function App() {
+  const scheme = useColorScheme();
+
   return (
-    <NavigationContainer>
-      <DrawerComponent />
+    <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
+      <TabComponent></TabComponent>
     </NavigationContainer>
   );
 }
+
+export default App;

@@ -6,12 +6,21 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Button,
 } from "react-native";
-import styles from "./styles";
-import themeSchema from "../../themes/themeSchema";
+import { ThemeContext } from "../../util/ThemeManager";
+import { styles } from "./styles";
 import { Controller, useForm } from "react-hook-form";
 
-const Login = () => {
+const ToggleButton = () => {
+  const { toggleTheme } = React.useContext(ThemeContext);
+
+  return <Button title="Toggle" onPress={() => toggleTheme()} />;
+};
+
+export const Login = () => {
+  const { theme } = React.useContext(ThemeContext);
+
   const {
     handleSubmit,
     control,
@@ -42,7 +51,7 @@ const Login = () => {
           <TextInput
             style={styles.input}
             placeholder="E-mail"
-            placeholderTextColor={themeSchema.inputColor.placeholder}
+            placeholderTextColor={theme.inputColor.placeholder}
             value={value}
             onBlur={onBlur}
             onChangeText={(value) => onChange(value)}
@@ -52,10 +61,6 @@ const Login = () => {
           required: {
             value: true,
             message: "E-mail não pode estar vazio",
-          },
-          pattern: {
-            value: /\S+@\S+\.\S+/,
-            message: "Email inserido não condiz com o padrão",
           },
         }}
       />
@@ -68,7 +73,7 @@ const Login = () => {
             secureTextEntry
             style={styles.input}
             placeholder="Senha"
-            placeholderTextColor={themeSchema.inputColor.placeholder}
+            placeholderTextColor={theme.inputColor.placeholder}
             value={value}
             onBlur={onBlur}
             onChangeText={(value) => onChange(value)}
@@ -104,5 +109,3 @@ const Login = () => {
     </KeyboardAvoidingView>
   );
 };
-
-export default Login;
