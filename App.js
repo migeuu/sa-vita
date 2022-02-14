@@ -5,14 +5,14 @@ import {
   DefaultTheme,
   DarkTheme,
 } from "@react-navigation/native";
-import DrawerComponent from "./src/components/DrawerComponent/Drawer";
+import TabComponent from "./src/screens/TabComponent/TabComponent";
 
 function App() {
   const scheme = useColorScheme();
 
   return (
     <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
-      <DrawerComponent />
+      <TabComponent></TabComponent>
     </NavigationContainer>
   );
 }
