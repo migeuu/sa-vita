@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -81,12 +81,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   profileImage: {
-    height: 40,
-    width: 40,
+    height: 30,
+    width: 30,
     borderRadius: 9999,
   },
   profileUsername: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "400",
     marginLeft: 8,
   },
