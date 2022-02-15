@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Appearance,
 } from "react-native";
-import SoniaImage from "../../../assets/images/sonia.jpg";
 import BrunoImage from "../../../assets/images/brunin.jpg";
 import Icon from "react-native-vector-icons/Feather";
 import { useTheme } from "@react-navigation/native";
@@ -16,16 +15,26 @@ import { useTheme } from "@react-navigation/native";
 import LikeButton from "../LikeButton/LikeButton.jsx";
 import CommentButton from "../CommentButton/CommentButton";
 import ShareButton from "../ShareButton/ShareButton";
+import ModalOptions from "../Modal/Modal";
 
 const colorScheme = Appearance.getColorScheme();
 
 const Post = (props) => {
-  const { colors } = useTheme();
-  const abrirModal = () => {
-    alert("Abrir modal");
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
   };
+
+  const { colors } = useTheme();
+
   return (
     <View style={(styles.postContainer, { backgroundColor: colors.card })}>
+      <ModalOptions
+        isVisible={isModalVisible}
+        onBackdropPress={toggleModal}
+        onSwipeComplete={toggleModal}
+      />
       <View
         style={[
           styles.headerContainer,
@@ -41,7 +50,7 @@ const Post = (props) => {
           </Text>
         </View>
         <View style={styles.optionsContainer}>
-          <TouchableOpacity style={styles.optionsButton} onPress={abrirModal}>
+          <TouchableOpacity style={styles.optionsButton} onPress={toggleModal}>
             <Icon name="more-vertical" size={24} color={colors.text} />
           </TouchableOpacity>
         </View>
@@ -79,6 +88,9 @@ const Post = (props) => {
 };
 
 const styles = StyleSheet.create({
+  postContainer: {
+    marginBottom: 4,
+  },
   headerContainer: {
     padding: 10,
     flexDirection: "row",
