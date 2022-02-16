@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Appearance,
+  Share,
 } from "react-native";
 import BrunoImage from "../../../assets/images/brunin.jpg";
 import Icon from "react-native-vector-icons/Feather";
@@ -24,6 +25,12 @@ const Post = (props) => {
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
+  };
+
+  const onShare = async () => {
+    const result = await Share.share({
+      message: "Vai tomar no cu do parceiro que levanta depois de pegar fuego!",
+    });
   };
 
   const { colors } = useTheme();
@@ -81,16 +88,13 @@ const Post = (props) => {
           <LikeButton />
           <CommentButton />
         </View>
-        <ShareButton />
+        <ShareButton onPress={onShare} />
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  postContainer: {
-    marginBottom: 4,
-  },
   headerContainer: {
     padding: 10,
     flexDirection: "row",
