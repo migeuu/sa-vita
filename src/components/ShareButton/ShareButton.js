@@ -1,12 +1,12 @@
 import React from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 
-const ShareButton = () => {
+const ShareButton = (props) => {
   const { colors } = useTheme();
   return (
-    <Pressable style={{ width: 30, height: 30 }}>
+    <Pressable {...props} style={{ width: 30, height: 30 }}>
       <MaterialCommunityIcons
         name="share-variant"
         size={30}
