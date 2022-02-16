@@ -38,13 +38,13 @@ const LikeButton = () => {
 
   return (
     <Pressable
-      style={{ width: 32, height: 32 }}
+      style={{ width: 30, height: 30 }}
       onPress={() => (liked.value = withSpring(liked.value ? 0 : 1))}
     >
       <Animated.View style={[StyleSheet.absoluteFillObject, outlineStyle]}>
         <MaterialCommunityIcons
           name={"heart-outline"}
-          size={32}
+          size={30}
           color={colors.text}
         />
       </Animated.View>

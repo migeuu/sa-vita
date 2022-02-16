@@ -1,12 +1,13 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 // Tela de Configurações
 const SettingsScreen = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>Configuratioooons</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
