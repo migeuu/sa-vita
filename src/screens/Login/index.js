@@ -6,17 +6,9 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Button,
 } from "react-native";
-import { ThemeContext } from "../../util/ThemeManager";
 import { styles } from "./styles";
 import { Controller, useForm } from "react-hook-form";
-
-const ToggleButton = () => {
-  const { toggleTheme } = React.useContext(ThemeContext);
-
-  return <Button title="Toggle" onPress={() => toggleTheme()} />;
-};
 
 export const Login = () => {
   const { theme } = React.useContext(ThemeContext);
