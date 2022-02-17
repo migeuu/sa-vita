@@ -28,9 +28,14 @@ const Post = (props) => {
   };
 
   const onShare = async () => {
-    const result = await Share.share({
-      message: "Vai tomar no cu do parceiro que levanta depois de pegar fuego!",
-    });
+    try {
+      const result = await Share.share({
+        message:
+          "Vai tomar no cu do parceiro que levanta depois de pegar fuego!",
+      });
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   const { colors } = useTheme();
