@@ -1,3 +1,4 @@
+// import components
 import React from "react";
 import {
   View,
