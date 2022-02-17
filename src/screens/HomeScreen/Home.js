@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Post
-        username="Meguel Marqueore"
+        username="Bruno Ecker"
         title="Desenvolvedor Front End ReactJS"
         description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus, asperiores? Quisquam quae ipsam corrupti voluptatem reprehenderit ad fugiat sit fugit."
         requirements="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem tempora totam, enim natus qui cupiditate ab explicabo, tenetur harum, odio pariatur. Quae exercitationem, rem sunt ipsa tempora eligendi? Neque rerum, mollitia nostrum a doloremque iusto aspernatur quibusdam provident blanditiis exercitationem!"
