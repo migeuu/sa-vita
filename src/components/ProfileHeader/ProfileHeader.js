@@ -14,7 +14,14 @@ const ProfileHeader = (props) => {
       <View style={styles.profileInfo}>
         <Image source={props.imageProfile} style={styles.imageProfile} />
         <View style={styles.infoDetails}>
-            
+          <View style={styles.infoContent}>
+            <Text style={styles.infoText}>{props.followers}</Text>
+            <Text style={styles.infoSubtext}>Seguidores</Text>
+          </View>
+          <View style={styles.infoContent}>
+            <Text style={styles.infoText}>{props.following}</Text>
+            <Text style={styles.infoSubtext}>Seguindo</Text>
+          </View>
         </View>
       </View>
     </View>
@@ -40,14 +47,25 @@ const styles = StyleSheet.create({
   },
   profileInfo: {
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "space-between",
+    alignItems: "center",
     padding: 20,
   },
   imageProfile: {
     width: 90,
     height: 90,
     borderRadius: 9999,
+  },
+  infoDetails: {
+    width: 250,
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  infoContent: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10,
   },
 });
 

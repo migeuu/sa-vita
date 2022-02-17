@@ -10,7 +10,7 @@ const PerfilScreen = () => {
 
   return (
     <SafeAreaView style={styles.profileContainer}>
-      <ProfileHeader username="Meguel Marqueore" imageProfile={imageBrunao} />
+      <ProfileHeader username="Bruno Ecker" imageProfile={imageBrunao} followers={1578} following={550} />
     </SafeAreaView>
   );
 };
