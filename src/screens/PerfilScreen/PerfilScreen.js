@@ -6,20 +6,15 @@ import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import imageBruno from "../../../assets/images/brunin.jpg";
 
 const PerfilScreen = () => {
-  // Tenho que criar um estado que seja booleano e que retorne um texto caso seja true e outro caso seja false
   const imageBrunao = imageBruno;
 
   const [isFollowing, setIsFollowing] = useState(false);
-  const [followText, setFollowText] = useState("Seguir");
 
+  // ISSUE - Tenho que criar um estado que seja booleano e que retorne um texto caso seja true e outro caso seja false
   // ISSUE - O estado do componente FOLLOW_TEXT so atualiza quando é clicado pela segunda vez
+  // ISSUE FIX - Estado do isFollowing retorna diretamente no componente de texto o estado "SEGUIR"/"SEGUINDO".
   const toggleIsFollowing = () => {
     setIsFollowing(!isFollowing);
-    if (isFollowing === true) {
-      setFollowText("Seguindo");
-    } else if (isFollowing === false) {
-      setFollowText("Seguir");
-    }
   };
 
   return (
@@ -30,7 +25,7 @@ const PerfilScreen = () => {
         followers={1578}
         following={550}
         postNumbers={32}
-        isFollowing={followText}
+        isFollowing={isFollowing}
         followOnPress={toggleIsFollowing}
       />
     </SafeAreaView>
