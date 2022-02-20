@@ -106,9 +106,36 @@ const ProfileHeader = (props) => {
           </View>
         </View>
       </View>
+      <View style={[styles.profileBioContainer, { color: colors.text }]}>
+        <Text style={[styles.profileBioTitle, { color: colors.text }]}>
+          some text
+        </Text>
+        <Text style={[styles.profileBioText, { color: colors.text }]}>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
+          placeat dolor voluptate illum voluptates cumque minima assumenda
+          laborum exercitationem culpa.
+        </Text>
+      </View>
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.followButton} onPress={props.followOnPress}>
-          <Text style={styles.buttonText}>{props.isFollowing}</Text>
+        <Pressable
+          style={[
+            props.isFollowing === true
+              ? styles.isFollowingStyle
+              : styles.followButton,
+            { color: colors.text, borderColor: colors.text },
+          ]}
+          onPress={props.followOnPress}
+        >
+          <Text
+            style={[
+              styles.buttonText,
+              props.isFollowing === true
+                ? { color: colors.text }
+                : { color: "#000" },
+            ]}
+          >
+            {props.isFollowing === true ? "Seguindo" : "Seguir"}
+          </Text>
         </Pressable>
         <Pressable
           style={[
@@ -179,6 +206,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "bold",
   },
+  profileBioContainer: {
+    paddingBottom: 20,
+  },
+  profileBioTitle: {
+    fontWeight: "bold",
+  },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -186,6 +219,15 @@ const styles = StyleSheet.create({
   },
   followButton: {
     backgroundColor: "#00c4cc",
+    width: "40%",
+    height: 40,
+    borderRadius: 6,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  isFollowingStyle: {
+    backgroundColor: "transparent",
+    borderWidth: 1.5,
     width: "40%",
     height: 40,
     borderRadius: 6,
