@@ -108,7 +108,7 @@ const ProfileHeader = (props) => {
       </View>
       <View style={[styles.profileBioContainer, { color: colors.text }]}>
         <Text style={[styles.profileBioTitle, { color: colors.text }]}>
-          some text
+          {props.title}
         </Text>
         <Text style={[styles.profileBioText, { color: colors.text }]}>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
@@ -210,9 +210,11 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   profileBioTitle: {
+    fontSize: 16,
     fontWeight: "bold",
   },
   buttonContainer: {
+    paddingBottom: 10,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
