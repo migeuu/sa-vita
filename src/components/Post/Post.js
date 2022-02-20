@@ -16,9 +16,18 @@ import { useTheme } from "@react-navigation/native";
 import LikeButton from "../LikeButton/LikeButton.jsx";
 import CommentButton from "../CommentButton/CommentButton";
 import ShareButton from "../ShareButton/ShareButton";
-import ModalOptions from "../Modal/Modal";
+import ModalCustom from "../Modal/Modal";
 
 const colorScheme = Appearance.getColorScheme();
+
+const ModalContentOptions = () => {
+  const { colors } = useTheme();
+  return (
+    <View>
+      <Text style={{color: colors.text}}>Hello!</Text>
+    </View>
+  );
+};
 
 const Post = (props) => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -30,8 +39,7 @@ const Post = (props) => {
   const onShare = async () => {
     try {
       const result = await Share.share({
-        message:
-          "Vai tomar no cu do parceiro que levanta depois de pegar fuego!",
+        message: "Post tal!",
       });
     } catch (err) {
       console.error(err.message);
@@ -42,10 +50,11 @@ const Post = (props) => {
 
   return (
     <View style={(styles.postContainer, { backgroundColor: colors.card })}>
-      <ModalOptions
+      <ModalCustom
         isVisible={isModalVisible}
         onBackdropPress={toggleModal}
         onSwipeComplete={toggleModal}
+        children={<ModalContentOptions />}
       />
       <View
         style={[
@@ -149,4 +158,10 @@ const styles = StyleSheet.create({
   },
 });
 
+const modalStyles = (colors) =>
+  StyleSheet.create({
+    text: {
+      color: colors.text,
+    },
+  });
 export default Post;
