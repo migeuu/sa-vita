@@ -1,10 +1,10 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../HomeScreen/Home";
-import MensagensScreen from "../MensagensScreen/MensagensScreen";
-import PerfilScreen from "../PerfilScreen/PerfilScreen";
-import SettingsScreen from "../SettingsScreen/SettingsScreen";
-import SearchScreen from "../SearchScreen/SearchScreen";
+import Home from "../../screens/HomeScreen/Home";
+import MensagensScreen from "../../screens/MensagensScreen/MensagensScreen";
+import PerfilScreen from "../../screens/PerfilScreen/PerfilScreen";
+import SettingsScreen from "../../screens/SettingsScreen/SettingsScreen";
+import SearchScreen from "../../screens/SearchScreen/SearchScreen";
 import Icon from "react-native-vector-icons/Feather";
 
 const Tab = createBottomTabNavigator();

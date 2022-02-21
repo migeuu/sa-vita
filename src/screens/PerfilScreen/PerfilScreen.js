@@ -1,9 +1,11 @@
 //importação de pacotes e componentes
 import React, { useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
+import ProfileBody from "../../components/ProfileBody/ProfileBody";
 import imageBruno from "../../../assets/images/brunin.jpg";
+import { set } from "react-native-reanimated";
 
 const PerfilScreen = () => {
   const imageBrunao = imageBruno;
@@ -28,6 +30,7 @@ const PerfilScreen = () => {
         isFollowing={isFollowing}
         followOnPress={toggleIsFollowing}
       />
+      <ProfileBody />
     </SafeAreaView>
   );
 };
@@ -35,6 +38,19 @@ const PerfilScreen = () => {
 const styles = StyleSheet.create({
   profileContainer: {
     flex: 1,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    padding: 10,
+  },
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 150,
+    borderRadius: 10,
+    backgroundColor: "#fff",
   },
 });
 
