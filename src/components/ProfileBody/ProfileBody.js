@@ -1,45 +1,73 @@
-import {
-  View,
-  Text,
-  Pressable,
-  Button,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
+import { useTheme } from "@react-navigation/native";
+import Post from "../Post/Post";
 
 const ProfileBody = () => {
   const [post, setPost] = useState(true);
 
+  const { colors } = useTheme();
+
   return (
-    <View style={styles.buttonContainer}>
-      <TouchableOpacity
-        onPress={() => {
-          setPost(false);
-          console.log(Post);
-        }}
-      >
-        <View style={styles.button}>
-          <Text>Post</Text>
+    <View>
+      <View style={[styles.buttonContainer, { backgroundColor: colors.card }]}>
+        <TouchableOpacity
+          onPress={() => {
+            setPost(true);
+          }}
+        >
+          <View
+            style={[
+              styles.button,
+              post == true
+                ? { borderBottomColor: "#00c4cc" }
+                : { borderBottomColor: "#323232" },
+            ]}
+          >
+            <Text style={styles.buttonTextBar}>Post</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            setPost(false);
+          }}
+        >
+          <View
+            style={[
+              styles.button,
+              post == false
+                ? { borderBottomColor: "#00c4cc" }
+                : { borderBottomColor: "#323232" },
+            ]}
+          >
+            <Text style={styles.buttonTextBar}>Sobre</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      {post == true ? (
+        <Post />
+      ) : (
+        <View>
+          <Text>SOBRE</Text>
         </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          setPost(true);
-          console.log(Post);
-        }}
-      >
-        <View style={styles.button}>
-          <Text>Sobre</Text>
-        </View>
-      </TouchableOpacity>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#c71",
+    paddingHorizontal: 10,
+    borderBottomWidth: 2,
+  },
+  buttonTextBar: {
+    fontSize: 18,
+    fontWeight: "400",
+    paddingBottom: 4,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
 });
 

@@ -5,7 +5,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import ProfileBody from "../../components/ProfileBody/ProfileBody";
 import imageBruno from "../../../assets/images/brunin.jpg";
-import { set } from "react-native-reanimated";
 
 const PerfilScreen = () => {
   const imageBrunao = imageBruno;
@@ -24,8 +23,8 @@ const PerfilScreen = () => {
       <ProfileHeader
         username="Bruno_Ecker"
         imageProfile={imageBrunao}
-        followers={1578}
-        following={550}
+        followers={1591}
+        following={561}
         postNumbers={32}
         isFollowing={isFollowing}
         followOnPress={toggleIsFollowing}
