@@ -21,15 +21,13 @@
     "@react-navigation/drawer": "^6.1.8",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.5.0",
-    "@react-navigation/stack": "^6.1.1",
-    "axios": "^0.26.0",
-    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
     "expo": "~43.0.2",
     "expo-font": "~10.0.3",
     "expo-status-bar": "~1.1.0",
     "express": "^4.17.3",
-    "formik": "^2.2.9",
     "lottie-react-native": "4.0.3",
+    "nodemon": "^2.0.15",
     "pg": "^8.7.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -47,5 +45,17 @@
   "devDependencies": {
     "@babel/core": "^7.12.9"
   },
-  "private": true
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/migeuu/sa-vita.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/migeuu/sa-vita/issues"
+  },
+  "homepage": "https://github.com/migeuu/sa-vita#readme",
+  "description": ""
 }
