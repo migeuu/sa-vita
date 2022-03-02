@@ -6,9 +6,9 @@ create table PERFIL (
 	
 	IDPERFIL INT not null
 	, NOME VARCHAR(100)
-	, CPF INT 
+	, CPF char(11) 
 	, EMAIL VARCHAR(100)
-	, TELEFONE INT 
+	, TELEFONE BIGINT 
 	, CATEGORIA CHAR(1)
 	, FOTO_PERFIL bytea
 	
