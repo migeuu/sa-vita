@@ -1,8 +1,9 @@
-DROP schema if exists DBVITA cascade;
+
+drop schema dbvita if exists cascade;
 
 create schema DBVITA;
 
-create table PERFIL (
+create table DBVITA.PERFIL (
 	
 	IDPERFIL INT not null
 	, NOME VARCHAR(100)
@@ -17,37 +18,24 @@ create table PERFIL (
 
 );
 
-create table COMENTARIO (
-
-	IDCOMENTARIO INT not null
-	, IDPERFIL INT
-	, CONTEUDO VARCHAR(280)
-	, DH_ENVIO TIMESTAMP
-	
-	, primary key(IDCOMENTARIO)
-	, foreign key(IDPERFIL) references PERFIL(IDPERFIL)
-
-);
-
-create table PUBLICACAO (
+create table DBVITA.PUBLICACAO (
 
 	IDPUBLICACAO INT not null
 	, IDPERFIL INT 
-	, IDCOMENTARIO INT
-	, REACAO CHAR(1)
-	, CONTEUDO VARCHAR(1000)
 	, TITULO VARCHAR(100)
+	, CONTEUDO VARCHAR(1000)
+	, REQ varchar(1000)
 	, IMAGEM bytea
 	
 	, primary key (IDPUBLICACAO) 
-	, foreign key (IDPERFIL) references PERFIL(IDPERFIL)
-	, foreign key (IDCOMENTARIO) references COMENTARIO(IDCOMENTARIO)
-);
+	, foreign key (IDPERFIL) references DBVITA.PERFIL(IDPERFIL)
+	
+); 	
 
 
 
 
-create table MENSAGEM (
+create table DBVITA.MENSAGEM (
 
 	IDMENSAGEM INT not null
 	, CONTEUDO VARCHAR(300)
@@ -58,15 +46,32 @@ create table MENSAGEM (
 
 );
 
-create table PERFIL_MENSAGEM (
 
-	IDPERFIL_MENSAGEM INT not null
+create table DBVITA.COMENTARIO (
+
+	IDCOMENTARIO INT not null
 	, IDPERFIL INT
+	, IDPUBLICACAO INT
+	, CONTEUDO VARCHAR(280)
+	, DH_ENVIO TIMESTAMP
+	
+	, primary key(IDCOMENTARIO)
+	, foreign key(IDPERFIL) references DBVITA.PERFIL(IDPERFIL)
+	, foreign key(IDPUBLICACAO) references DBVITA.PUBLICACAO(IDPUBLICACAO)
+
+);
+
+create table DBVITA.PERFIL_MENSAGEM (
+
+
+	 IDPERFIL1 INT
+	, IDPERFIL2 INT
 	, IDMENSAGEM INT 
 	
-	, primary key(IDPERFIL, IDMENSAGEM)
-	, foreign key(IDPERFIL) references PERFIL(IDPERFIL)
-	, foreign key(IDMENSAGEM) references MENSAGEM(IDMENSAGEM)
+	, primary key(IDPERFIL1, IDPERFIL2, IDMENSAGEM)
+	, foreign key(IDPERFIL1) references DBVITA.PERFIL(IDPERFIL)
+	, foreign key(IDPERFIL2) references DBVITA.PERFIL(IDPERFIL)
+	, foreign key(IDMENSAGEM) references DBVITA.MENSAGEM(IDMENSAGEM)
 
 );
 

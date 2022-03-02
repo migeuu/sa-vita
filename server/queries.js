@@ -90,7 +90,7 @@ const pool = new Pool({
   password: "senai",
   host: "localhost",
   port: 5432,
-  database: "DBVita",
+  database: "VitaDB",
 });
 
 module.exports = pool;

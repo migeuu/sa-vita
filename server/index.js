@@ -77,6 +77,64 @@ app.get("/perfil", async (req, res) => {
   }
 });
 
+
+app.get("/publicacao", async (req, res) => {
+  try {
+    const allPublicacao = await pool.query("SELECT * FROM publicacao");
+    res.json(allPublicacao.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+
+app.post("/perfil", async (req, res) => {
+  try {
+    const { nome, cpf, email, telefone, categoria, foto_perfil } =
+      req.body;
+    const newAnuncio = await pool.query(
+      "INSERT INTO perfil (nome, cpf, email, telefone, categoria, foto_perfil) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      [nome, cpf, email, telefone, categoria, foto_perfil]
+    );
+    res.json(newPerfil);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+
+app.post("/publicacao", async (req, res) => {
+  try {
+    const { nome, cpf, email, telefone, categoria, foto_perfil } =
+      req.body;
+    const newAnuncio = await pool.query(
+      "INSERT INTO perfil (nome, cpf, email, telefone, categoria, foto_perfil) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      [nome, cpf, email, telefone, categoria, foto_perfil]
+    );
+    res.json(newPerfil);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+
+app.put("perfil/:id", async (req, res) => {
+    try {
+      const { idperfil } = req.params;
+      const { nome, cpf, email, telefone, categoria, foto_perfil } =
+        req.body;
+  
+      const updatePerfil = await pool.query(
+        "UPDATE perfil SET nome = $1, cpf = $2, email = $3, telefone = $4, categoria = $5, foto_perfil = $6 WHERE idperfil = $7 ",
+        [idperfil, nome, cpf, email, telefone, categoria, foto_perfil,]
+      );
+  
+      res.json("Perfil Atualizado atualizado!");
+    } catch (err) {
+      console.error(err.message);
+    }
+  });
+
 // Get em um anuncio unico
 
 // app.get("anuncios/:id", async (req, res) => {
