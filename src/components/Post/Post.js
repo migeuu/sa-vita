@@ -24,7 +24,7 @@ const ModalContentOptions = () => {
   const { colors } = useTheme();
   return (
     <View>
-      <Text style={{color: colors.text}}>Hello!</Text>
+      <Text style={{ color: colors.text }}>Hello!</Text>
     </View>
   );
 };
@@ -83,9 +83,11 @@ const Post = (props) => {
         <Text style={[styles.description, { color: colors.text }]}>
           {props.description}
         </Text>
-        <Text style={[styles.subTitle, { color: colors.text }]}>
-          Requisitos
-        </Text>
+        {props.requirements == null ? null : (
+          <Text style={[styles.subTitle, { color: colors.text }]}>
+            Requisitos:
+          </Text>
+        )}
         <Text style={[styles.requirements, { color: colors.text }]}>
           {props.requirements}
         </Text>
