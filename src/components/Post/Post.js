@@ -11,8 +11,6 @@ import {
 import BrunoImage from "../../../assets/images/brunin.jpg";
 import Icon from "react-native-vector-icons/Feather";
 import { useTheme } from "@react-navigation/native";
-
-// COMPONENTS
 import LikeButton from "../LikeButton/LikeButton.jsx";
 import CommentButton from "../CommentButton/CommentButton";
 import ShareButton from "../ShareButton/ShareButton";
@@ -49,7 +47,12 @@ const Post = (props) => {
   const { colors } = useTheme();
 
   return (
-    <View style={(styles.postContainer, { backgroundColor: colors.card })}>
+    <View
+      style={
+        (styles.postContainer,
+        { backgroundColor: colors.card, marginBottom: 10 })
+      }
+    >
       <ModalCustom
         isVisible={isModalVisible}
         onBackdropPress={toggleModal}
@@ -111,6 +114,10 @@ const Post = (props) => {
 };
 
 const styles = StyleSheet.create({
+  postContainer: {
+    marginBottom: 10,
+    backgroundColor: "#c91",
+  },
   headerContainer: {
     padding: 10,
     flexDirection: "row",

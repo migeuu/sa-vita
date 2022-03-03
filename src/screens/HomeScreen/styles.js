@@ -4,16 +4,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  newPostButton: {
+  postButtonContainer: {
     width: 50,
     height: 50,
     borderRadius: 999,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#00c4cc",
+    backgroundColor: "#00c1cc",
     position: "absolute",
     bottom: 10,
-    right: 10,
+    right: 15,
   },
 });
 

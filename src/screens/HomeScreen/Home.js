@@ -2,36 +2,64 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Post from "../../components/Post/Post";
 import styles from "./styles";
-import { TouchableOpacity, View } from "react-native";
+import { FlatList, TouchableOpacity, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useTheme } from "@react-navigation/native";
+
+const DATA = [
+  {
+    username: "Miguel Marquiori",
+    id: 1,
+    title: "Título 1",
+    description: "Gostaria de trabalhar com veias",
+    requirements: "- Ter mais de 60 anos\n- Ter muito dinheiro na conta",
+  },
+  {
+    username: "Paulinho Battistella",
+    id: 2,
+    title: "Título 2",
+    description: "Gostaria de trabalhar com veias",
+    requirements: "- Ter mais de 60 anos\n- Ter muito dinheiro na conta",
+  },
+  {
+    username: "Lucas Naspolini",
+    id: 3,
+    title: "Título 3",
+    description: "Gostaria de trabalhar com veias",
+    requirements: "- Ter mais de 60 anos\n- Ter muito dinheiro na conta",
+  },
+  {
+    username: "Ismael Silva Teixeira",
+    id: 4,
+    title: "Título 4",
+    description: "Gostaria de trabalhar com veias",
+    requirements: "- Ter mais de 60 anos\n- Ter muito dinheiro na conta",
+  },
+];
 
 const Home = ({ navigation }) => {
-  const { colors } = useTheme();
-
-  const DATA_POST = async (req, res) => {
-    try {
-      const DATA_ITEM_POST = await fetch("http://localhost:5000/posts");
-      res.json(DATA_ITEM_POST);
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
+  const renderItem = ({ item }) => (
+    <Post
+      username={item.username}
+      title={item.title}
+      description={item.description}
+      requirements={item.requirements}
+    />
+  );
 
   return (
     <SafeAreaView style={styles.container}>
-      <Post
-        username="Bruno Ecker"
-        title="Desenvolvedor Front End ReactJS"
-        description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus, asperiores? Quisquam quae ipsam corrupti voluptatem reprehenderit ad fugiat sit fugit."
-        requirements="Olá Marilene!"
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
       />
       <TouchableOpacity
-        style={styles.newPostButton}
+        style={styles.postButtonContainer}
         onPress={() => navigation.navigate("Nova publicação")}
       >
-        <View style={styles.newPostButtonContainer}>
-          <MaterialCommunityIcons name="plus" size={32} color="black" />
+        <View style={styles.postButton}>
+          <MaterialCommunityIcons name="plus" size={32} color="#fff" />
         </View>
       </TouchableOpacity>
     </SafeAreaView>
