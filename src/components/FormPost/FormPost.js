@@ -3,6 +3,7 @@ import { Button, TextInput, Text, View, TouchableOpacity } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import styles from "../../screens/CreatePostScreen/styles";
+const db = require("../../../server/queries")
 
 const SignupSchema = Yup.object().shape({
   title: Yup.string()
@@ -25,7 +26,17 @@ export const MyReactNativeForm = () => (
     }}
     validateOnChange={true}
     validationSchema={SignupSchema}
-    onSubmit={(values) => console.log(values)}
+    onSubmit={
+      async function createPost(req, res) {
+        try {
+          res = await db.api.post('/user?ID=12345');
+          console.log(res);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+    }
   >
     {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
       <View style={styles.formContainer}>
