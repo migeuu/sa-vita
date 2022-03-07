@@ -16,7 +16,7 @@ const SignupSchema = Yup.object().shape({
   requirements: Yup.string().max(255, "Limite de caracteres excedido (255)"),
 });
 
-export const MyReactNativeForm = (props) => (
+export const MyReactNativeForm = () => (
   <Formik
     initialValues={{
       title: "",
