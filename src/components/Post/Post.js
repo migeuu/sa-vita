@@ -11,14 +11,21 @@ import {
 import BrunoImage from "../../../assets/images/brunin.jpg";
 import Icon from "react-native-vector-icons/Feather";
 import { useTheme } from "@react-navigation/native";
-
-// COMPONENTS
 import LikeButton from "../LikeButton/LikeButton.jsx";
 import CommentButton from "../CommentButton/CommentButton";
 import ShareButton from "../ShareButton/ShareButton";
-import ModalOptions from "../Modal/Modal";
+import ModalCustom from "../Modal/Modal";
 
 const colorScheme = Appearance.getColorScheme();
+
+const ModalContentOptions = () => {
+  const { colors } = useTheme();
+  return (
+    <View>
+      <Text style={{ color: colors.text }}>Hello!</Text>
+    </View>
+  );
+};
 
 const Post = (props) => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -28,19 +35,29 @@ const Post = (props) => {
   };
 
   const onShare = async () => {
-    const result = await Share.share({
-      message: "Vai tomar no cu do parceiro que levanta depois de pegar fuego!",
-    });
+    try {
+      const result = await Share.share({
+        message: "Post tal!",
+      });
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   const { colors } = useTheme();
 
   return (
-    <View style={(styles.postContainer, { backgroundColor: colors.card })}>
-      <ModalOptions
+    <View
+      style={
+        (styles.postContainer,
+        { backgroundColor: colors.card, marginBottom: 10 })
+      }
+    >
+      <ModalCustom
         isVisible={isModalVisible}
         onBackdropPress={toggleModal}
         onSwipeComplete={toggleModal}
+        children={<ModalContentOptions />}
       />
       <View
         style={[
@@ -69,9 +86,11 @@ const Post = (props) => {
         <Text style={[styles.description, { color: colors.text }]}>
           {props.description}
         </Text>
-        <Text style={[styles.subTitle, { color: colors.text }]}>
-          Requisitos
-        </Text>
+        {props.requirements == null ? null : (
+          <Text style={[styles.subTitle, { color: colors.text }]}>
+            Requisitos:
+          </Text>
+        )}
         <Text style={[styles.requirements, { color: colors.text }]}>
           {props.requirements}
         </Text>
@@ -95,6 +114,10 @@ const Post = (props) => {
 };
 
 const styles = StyleSheet.create({
+  postContainer: {
+    marginBottom: 10,
+    backgroundColor: "#c91",
+  },
   headerContainer: {
     padding: 10,
     flexDirection: "row",
@@ -144,4 +167,10 @@ const styles = StyleSheet.create({
   },
 });
 
+const modalStyles = (colors) =>
+  StyleSheet.create({
+    text: {
+      color: colors.text,
+    },
+  });
 export default Post;

@@ -8,7 +8,6 @@ import Animated, {
 } from "react-native-reanimated";
 import { Pressable, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useTheme } from "@react-navigation/native";
 
 const LikeButton = () => {
   const liked = useSharedValue(0);
@@ -34,8 +33,6 @@ const LikeButton = () => {
     };
   });
 
-  const { colors } = useTheme();
-
   return (
     <Pressable
       style={{ width: 30, height: 30 }}
@@ -45,7 +42,7 @@ const LikeButton = () => {
         <MaterialCommunityIcons
           name={"heart-outline"}
           size={30}
-          color={colors.text}
+          color={"#00c4cc"}
         />
       </Animated.View>
 

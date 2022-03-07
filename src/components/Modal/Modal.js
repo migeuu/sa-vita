@@ -1,8 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Modal from "react-native-modal";
+import { useTheme } from "@react-navigation/native";
 
-const ModalOptions = (props) => {
+const ModalCustom = (props) => {
+  const { colors } = useTheme();
+
   return (
     <Modal
       {...props}
@@ -11,26 +14,8 @@ const ModalOptions = (props) => {
       style={styles.modalContainer}
       swipeDirection="down"
     >
-      <View style={styles.modalContent}>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
-        <Text>Hello!</Text>
+      <View style={[styles.modalContent, { backgroundColor: colors.card }]}>
+        {props.children}
       </View>
     </Modal>
   );
@@ -42,13 +27,12 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   modalContent: {
-    backgroundColor: "white",
     padding: 22,
     justifyContent: "center",
     alignItems: "center",
     borderTopLeftRadius: 10,
-    borderTopRightRadius: 10
+    borderTopRightRadius: 10,
   },
 });
 
-export default ModalOptions;
+export default ModalCustom;

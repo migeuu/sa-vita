@@ -1,10 +1,10 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../HomeScreen/Home";
-import MensagensScreen from "../MensagensScreen/MensagensScreen";
-import PerfilScreen from "../PerfilScreen/PerfilScreen";
-import SettingsScreen from "../SettingsScreen/SettingsScreen";
-import PropostasScreen from "../PropostasScreen/PropostasScreen";
+import HomeStackScreen from "../../screens/Stacks/HomeStackScreen";
+import MensagensScreen from "../../screens/MensagensScreen/MensagensScreen";
+import PerfilScreen from "../../screens/PerfilScreen/PerfilScreen";
+import SettingsScreen from "../../screens/SettingsScreen/SettingsScreen";
+import SearchScreen from "../../screens/SearchScreen/SearchScreen";
 import Icon from "react-native-vector-icons/Feather";
 
 const Tab = createBottomTabNavigator();
@@ -22,10 +22,10 @@ const TabComponent = () => {
           let iconName;
 
           switch (route.name) {
-            case "Main":
+            case "Home":
               iconName = "home";
               break;
-            case "Propostas":
+            case "Search":
               iconName = "search";
               break;
             case "Mensagens":
@@ -46,8 +46,8 @@ const TabComponent = () => {
         },
       })}
     >
-      <Tab.Screen name="Main" component={Home} />
-      <Tab.Screen name="Propostas" component={PropostasScreen} />
+      <Tab.Screen name="Home" component={HomeStackScreen} />
+      <Tab.Screen name="Search" component={SearchScreen} />
       <Tab.Screen name="Mensagens" component={MensagensScreen} />
       <Tab.Screen name="Perfil" component={PerfilScreen} />
       <Tab.Screen name="Configurações" component={SettingsScreen} />
