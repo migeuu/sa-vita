@@ -27,14 +27,9 @@ export const MyReactNativeForm = () => (
     validateOnChange={true}
     validationSchema={SignupSchema}
     onSubmit={
-      async function createPost(req, res) {
-        try {
-          res = await db.api.post('/user?ID=12345');
-          console.log(res);
-        } catch (error) {
-          console.error(error);
-        }
-      }
+
+      
+
 
     }
   >
