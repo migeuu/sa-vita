@@ -8,6 +8,7 @@ create table DBVITA.USER (
 	ID SERIAL not null PRIMARY KEY
 	, NAME VARCHAR(100)
 	, EMAIL VARCHAR(100)
+	, PASS varchar(100)
 	, PHONE BIGINT 
 	, CATEGORY CHAR(1)
 	, PROF_PIC bytea
