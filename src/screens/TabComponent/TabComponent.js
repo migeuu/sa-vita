@@ -6,6 +6,21 @@ import PerfilScreen from "../PerfilScreen/PerfilScreen";
 import SettingsScreen from "../SettingsScreen/SettingsScreen";
 import PropostasScreen from "../PropostasScreen/PropostasScreen";
 import Icon from "react-native-vector-icons/Feather";
+// import ChatRoomScreeen from "../MensagensScreen/ChatRoomScreen";
+// import { createStackNavigator } from '@react-navigation/stack';
+
+// const Stack = createStackNavigator();
+
+// function ChatsScreen() {
+//   return (
+//     <Stack.Navigator>
+//       <Stack.Screen name="ChatRoom" component={ChatRoomScreeen}  
+//       options={({ route })  => ({
+//           title: route.params.name
+//         })} />
+//    </Stack.Navigator>
+//   )
+// }
 
 const Tab = createBottomTabNavigator();
 
@@ -56,3 +71,4 @@ const TabComponent = () => {
 };
 
 export default TabComponent;
+
