@@ -13,9 +13,10 @@ create table DBVITA.USER (
 	, CATEGORY CHAR(1)
 	, PROF_PIC bytea
 
-
+    
 
 );
+
 
 create table DBVITA.POST (
 
@@ -67,6 +68,18 @@ create table DBVITA.USER_MESSAGE (
 	, foreign key(IDMESSAGE) references DBVITA.MESSAGE(ID)
 
 );
+
+create table dbvita.denuncias (
+
+    id not null primary key
+    ,   idperfil_acusador INT
+    ,   idperfil_denunciado int 
+    ,   idpost int
+    , DESCRIPTION varchar(500)
+
+);
+
+
 
 
 
