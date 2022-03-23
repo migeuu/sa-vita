@@ -1,8 +1,9 @@
 //importação de pacotes e componentes
 import React, { useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
+import ProfileBody from "../../components/ProfileBody/ProfileBody";
 import imageBruno from "../../../assets/images/brunin.jpg";
 
 const PerfilScreen = () => {
@@ -22,13 +23,14 @@ const PerfilScreen = () => {
       <ProfileHeader
         username="Bruno_Ecker"
         imageProfile={imageBrunao}
-        followers={1578}
-        following={550}
+        followers={1591}
+        following={561}
         postNumbers={32}
         isFollowing={isFollowing}
         followOnPress={toggleIsFollowing}
         title="Cuidador | Programador | Surfista Amador | DesenvolvedorJS"
       />
+      <ProfileBody />
     </SafeAreaView>
   );
 };
@@ -36,6 +38,19 @@ const PerfilScreen = () => {
 const styles = StyleSheet.create({
   profileContainer: {
     flex: 1,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    padding: 10,
+  },
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 150,
+    borderRadius: 10,
+    backgroundColor: "#fff",
   },
 });
 
