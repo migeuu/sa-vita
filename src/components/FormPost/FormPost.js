@@ -1,9 +1,9 @@
 import React from "react";
-import { Button, TextInput, Text, View, TouchableOpacity } from "react-native";
+import { TextInput, Text, View, TouchableOpacity } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 import styles from "../../screens/CreatePostScreen/styles";
-const db = require("../../../server/queries")
 
 const SignupSchema = Yup.object().shape({
   title: Yup.string()
@@ -17,6 +17,17 @@ const SignupSchema = Yup.object().shape({
   requirements: Yup.string().max(255, "Limite de caracteres excedido (255)"),
 });
 
+const getUsers = async () => {
+  try {
+    const allUsers = await axios.get(
+      "https://nameless-woodland-42415.herokuapp.com/users"
+    );
+    console.log(allUsers.data);
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
 export const MyReactNativeForm = () => (
   <Formik
     initialValues={{
@@ -26,17 +37,6 @@ export const MyReactNativeForm = () => (
     }}
     validateOnChange={true}
     validationSchema={SignupSchema}
-    onSubmit={
-      async function createPost(req, res) {
-        try {
-          res = await db.api.post('/user?ID=12345');
-          console.log(res);
-        } catch (error) {
-          console.error(error);
-        }
-      }
-
-    }
   >
     {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
       <View style={styles.formContainer}>
@@ -78,7 +78,7 @@ export const MyReactNativeForm = () => (
         )}
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={handleSubmit}
+          onPress={() => getUsers()}
           disabled={!isValid}
         >
           <View style={styles.buttonTextContainer}>
