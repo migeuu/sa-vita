@@ -14,6 +14,7 @@ const TabComponent = () => {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={({ route }) => ({
+        tabBarHideOnKeyboard: true,
         headerShown: false,
         tabBarShowLabel: false,
         tabBarActiveTintColor: "#00c4cc",
