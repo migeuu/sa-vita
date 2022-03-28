@@ -1,13 +1,13 @@
 import React from "react";
-import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
-const PropostasScreen = () => {
+const SearchScreen = () => {
   return (
     <SafeAreaView>
-      <Text>Tela de Propostas</Text>
+      <SearchBar />
     </SafeAreaView>
   );
 };
 
-export default PropostasScreen;
+export default SearchScreen;
