@@ -28,6 +28,7 @@ const PerfilScreen = () => {
         postNumbers={32}
         isFollowing={isFollowing}
         followOnPress={toggleIsFollowing}
+        title="Cuidador | Programador | Surfista Amador | DesenvolvedorJS"
       />
       <ProfileBody />
     </SafeAreaView>
