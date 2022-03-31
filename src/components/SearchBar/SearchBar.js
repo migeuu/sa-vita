@@ -1,59 +1,94 @@
+// SearchBar.js
+import React from "react";
 import {
+  StyleSheet,
   TextInput,
   View,
-  StyleSheet,
-  TouchableHighlight,
+  Keyboard,
+  TouchableOpacity,
   Text,
 } from "react-native";
-import React, { useState } from "react";
-import { useTheme } from "@react-navigation/native";
+import { Entypo } from "@expo/vector-icons";
 
-const SearchBar = () => {
-  const [inputOpen, setInputOpen] = useState(false);
-  const { colors } = useTheme();
-
+const SearchBar = ({ clicked, searchValue, setSearchValue, setClicked }) => {
   return (
-    <View style={[styles.flexContainer, { backgroundColor: colors.card }]}>
-      <View style={styles.inputContainer}>
+    <View style={styles.container}>
+      <View
+        style={
+          clicked ? styles.searchBar__clicked : styles.searchBar__unclicked
+        }
+      >
         <TextInput
-          placeholder="Pesquisar"
           style={styles.input}
-          placeholderTextColor="#707070"
-          clearButtonMode="while-editing"
+          placeholder="Pesquisar"
+          value={searchValue}
+          onChangeText={setSearchValue}
+          onFocus={() => {
+            setClicked(true);
+          }}
         />
-        <TouchableHighlight style={styles.buttonContainer}>
+        {clicked && (
+          <Entypo
+            name="cross"
+            size={20}
+            color="black"
+            style={{ marginRight: 10 }}
+            onPress={() => {
+              setSearchValue("");
+            }}
+          />
+        )}
+      </View>
+      {clicked && (
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={() => {
+            Keyboard.dismiss();
+            setClicked(false);
+            setSearchValue("");
+          }}
+        >
           <View style={styles.buttonTextContainer}>
             <Text style={styles.buttonText}>Cancelar</Text>
           </View>
-        </TouchableHighlight>
-      </View>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
 
+// styles
 const styles = StyleSheet.create({
-  flexContainer: {
-    padding: 20,
-  },
-  inputContainer: {
+  container: {
+    padding: 10,
     flexDirection: "row",
-    justifyContent: "space-between",
-    backgroundColor: "#eee",
-    borderRadius: 8,
-    padding: 8,
-  },
-  inputDefault: {
-    fontSize: 16,
-    padding: 40,
-  },
-  buttonContainer: {
-    display: "none",
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "space-between",
+  },
+  searchBar__unclicked: {
+    padding: 10,
+    flexDirection: "row",
+    width: "100%",
+    backgroundColor: "#d9dbda",
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  searchBar__clicked: {
+    padding: 10,
+    flexDirection: "row",
+    width: "83%",
+    backgroundColor: "#d9dbda",
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+  input: {
+    fontSize: 18,
+    paddingHorizontal: 10,
+    width: "100%",
   },
   buttonText: {
     color: "#0a84ff",
-    fontWeight: "bold",
   },
 });
 
