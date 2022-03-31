@@ -1,9 +1,14 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeStackScreen from "../../screens/Stacks/HomeStackScreen";
-import PerfilScreen from "../../screens/PerfilScreen/PerfilScreen";
-import SearchScreen from "../../screens/SearchScreen/SearchScreen";
+import Home from "../HomeScreen/Home";
+import ChatsScreen from "../MensagensScreen/ChatsScreen";
+import PerfilScreen from "../PerfilScreen/PerfilScreen";
+import SettingsScreen from "../SettingsScreen/SettingsScreen";
+import PropostasScreen from "../PropostasScreen/PropostasScreen";
 import Icon from "react-native-vector-icons/Feather";
+import ChatRoomScreeen from "../MensagensScreen/ChatRoomScreen";
+import { createStackNavigator } from '@react-navigation/stack';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -12,7 +17,6 @@ const TabComponent = () => {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={({ route }) => ({
-        tabBarHideOnKeyboard: true,
         headerShown: false,
         tabBarShowLabel: false,
         tabBarActiveTintColor: "#00c4cc",
@@ -21,10 +25,10 @@ const TabComponent = () => {
           let iconName;
 
           switch (route.name) {
-            case "Home":
+            case "Main":
               iconName = "home";
               break;
-            case "Search":
+            case "Propostas":
               iconName = "search";
               break;
             case "Mensagens":
@@ -45,11 +49,29 @@ const TabComponent = () => {
         },
       })}
     >
-      <Tab.Screen name="Home" component={HomeStackScreen} />
-      <Tab.Screen name="Search" component={SearchScreen} />
+      <Tab.Screen name="Main" component={Home} />
+      <Tab.Screen name="Propostas" component={PropostasScreen} />
+      <Tab.Screen name="Mensagens" component={ChatsScreen} />
       <Tab.Screen name="Perfil" component={PerfilScreen} />
+      <Tab.Screen name="Configurações" component={SettingsScreen} />
     </Tab.Navigator>
   );
 };
-
 export default TabComponent;
+
+
+// const Stack = createStackNavigator();
+
+// function ChatsScreen() {
+//   return (
+//     <Stack.Navigator>
+//       <Stack.Screen name="ChatRoom" component={ChatRoomScreeen}  
+//       options={({ route })  => ({
+//           title: route.params.name
+//         })} />
+//    </Stack.Navigator>
+//   )
+// }
+//comentando//
+
+

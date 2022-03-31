@@ -1,13 +1,20 @@
-import React from "react";
-import { Text } from "react-native";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
-const PropostasScreen = () => {
+const SearchScreen = () => {
+  const [searchValue, setSearchValue] = useState("");
+  const [clicked, setClicked] = useState(false);
   return (
     <SafeAreaView>
-      <Text>Tela de Propostas</Text>
+      <SearchBar
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        clicked={clicked}
+        setClicked={setClicked}
+      />
     </SafeAreaView>
   );
 };
 
-export default PropostasScreen;
+export default SearchScreen;
