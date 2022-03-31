@@ -8,7 +8,6 @@ import {
   Appearance,
   Share,
 } from "react-native";
-import BrunoImage from "../../../assets/images/brunin.jpg";
 import Icon from "react-native-vector-icons/Feather";
 import { useTheme } from "@react-navigation/native";
 import LikeButton from "../LikeButton/LikeButton.jsx";
@@ -68,7 +67,7 @@ const Post = (props) => {
         ]}
       >
         <View style={styles.profileContainer}>
-          <Image source={BrunoImage} style={styles.profileImage} />
+          <Image style={styles.profileImage} />
           <Text style={[styles.profileUsername, { color: colors.text }]}>
             {props.username}
           </Text>

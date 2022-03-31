@@ -4,10 +4,8 @@ import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import ProfileBody from "../../components/ProfileBody/ProfileBody";
-import imageBruno from "../../../assets/images/brunin.jpg";
 
 const PerfilScreen = () => {
-  const imageBrunao = imageBruno;
 
   const [isFollowing, setIsFollowing] = useState(false);
 
@@ -22,7 +20,6 @@ const PerfilScreen = () => {
     <SafeAreaView style={styles.profileContainer}>
       <ProfileHeader
         username="Bruno_Ecker"
-        imageProfile={imageBrunao}
         followers={1591}
         following={561}
         postNumbers={32}

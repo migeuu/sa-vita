@@ -1,9 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeStackScreen from "../../screens/Stacks/HomeStackScreen";
-import MensagensScreen from "../../screens/MensagensScreen/MensagensScreen";
 import PerfilScreen from "../../screens/PerfilScreen/PerfilScreen";
-import SettingsScreen from "../../screens/SettingsScreen/SettingsScreen";
 import SearchScreen from "../../screens/SearchScreen/SearchScreen";
 import Icon from "react-native-vector-icons/Feather";
 
@@ -48,9 +46,7 @@ const TabComponent = () => {
     >
       <Tab.Screen name="Home" component={HomeStackScreen} />
       <Tab.Screen name="Search" component={SearchScreen} />
-      <Tab.Screen name="Mensagens" component={MensagensScreen} />
       <Tab.Screen name="Perfil" component={PerfilScreen} />
-      <Tab.Screen name="Configurações" component={SettingsScreen} />
     </Tab.Navigator>
   );
 };
