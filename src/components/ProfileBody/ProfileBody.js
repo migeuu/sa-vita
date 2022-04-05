@@ -24,7 +24,9 @@ const ProfileBody = () => {
                 : { borderBottomColor: "#323232" },
             ]}
           >
-            <Text style={styles.buttonTextBar}>Post</Text>
+            <Text style={[styles.buttonTextBar, { color: colors.text }]}>
+              Post
+            </Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -40,7 +42,9 @@ const ProfileBody = () => {
                 : { borderBottomColor: "#323232" },
             ]}
           >
-            <Text style={styles.buttonTextBar}>Sobre</Text>
+            <Text style={[styles.buttonTextBar, { color: colors.text }]}>
+              Sobre
+            </Text>
           </View>
         </TouchableOpacity>
       </View>

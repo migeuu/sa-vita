@@ -7,10 +7,11 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
+    "userInterfaceStyle": "automatic",
     "assetBundlePatterns": ["**/*"],
     "splash": {
       "image": "./assets/images/Vita-splash.png",
-      "backgroundColor": "#effaff"
+      "backgroundColor": "#000"
     }
   }
 }

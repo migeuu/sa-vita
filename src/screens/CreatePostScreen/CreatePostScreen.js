@@ -1,12 +1,12 @@
 import { View } from "react-native";
 import React from "react";
 import styles from "./styles";
-import { MyReactNativeForm } from "../../components/FormPost/FormPost";
+import FormPost from "../../components/FormPost/FormPost";
 
 const CreatePostScreen = () => {
   return (
     <View style={styles.container}>
-      <MyReactNativeForm />
+      <FormPost />
     </View>
   );
 };

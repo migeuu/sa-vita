@@ -8,19 +8,24 @@ import {
   TouchableOpacity,
   Text,
 } from "react-native";
+import { useTheme } from "@react-navigation/native";
 import { Entypo } from "@expo/vector-icons";
 
 const SearchBar = ({ clicked, searchValue, setSearchValue, setClicked }) => {
+  const { colors } = useTheme();
   return (
     <View style={styles.container}>
       <View
         style={
-          clicked ? styles.searchBar__clicked : styles.searchBar__unclicked
+          clicked
+            ? [styles.searchBar__clicked, { backgroundColor: colors.card }]
+            : [styles.searchBar__unclicked, { backgroundColor: colors.card }]
         }
       >
         <TextInput
-          style={styles.input}
+          style={[styles.input, { color: colors.text }]}
           placeholder="Pesquisar"
+          placeholderTextColor="#3d3d3d"
           value={searchValue}
           onChangeText={setSearchValue}
           onFocus={() => {
@@ -31,8 +36,8 @@ const SearchBar = ({ clicked, searchValue, setSearchValue, setClicked }) => {
           <Entypo
             name="cross"
             size={20}
-            color="black"
-            style={{ marginRight: 10 }}
+            color="#3d3d3d"
+            style={styles.crossButton}
             onPress={() => {
               setSearchValue("");
             }}
@@ -66,26 +71,33 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   searchBar__unclicked: {
-    padding: 10,
+    padding: 8,
     flexDirection: "row",
     width: "100%",
-    backgroundColor: "#d9dbda",
     borderRadius: 10,
     alignItems: "center",
   },
   searchBar__clicked: {
-    padding: 10,
+    padding: 8,
     flexDirection: "row",
-    width: "83%",
-    backgroundColor: "#d9dbda",
+    width: "80%",
     borderRadius: 10,
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
+  },
+  crossButton: {
+    marginRight: 5,
+    borderRadius: 999,
   },
   input: {
-    fontSize: 18,
+    fontSize: 16,
     paddingHorizontal: 10,
     width: "100%",
+  },
+  buttonContainer: {
+    width: "20%",
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonText: {
     color: "#0a84ff",
