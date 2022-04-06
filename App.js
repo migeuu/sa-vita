@@ -7,6 +7,7 @@ import {
 } from "@react-navigation/native";
 import TabComponent from "./src/components/TabComponent/TabComponent";
 import Login from "./src/screens/LoginScreen/LoginScreen";
+import Register from "./src/screens/Register/Register";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 

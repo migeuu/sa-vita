@@ -15,31 +15,38 @@ const SignupSchema = Yup.object().shape({
   username: Yup.string()
     .required("Nome de usuário obrigatório")
     .test(
-      "E-mail único",
-      "E-mail já usado", // <- key, message
-      function (value) {
-        return new Promise((resolve, reject) => {
-          axios
-            .get(`http://localhost:5000/users`)
-            .then((res) => {
-              resolve(true);
-            })
-            .catch((error) => {
-              if (
-                error.response.data.content ===
-                "The email has already been taken."
-              ) {
-                resolve(false);
-              }
-            });
-        });
+      "Unique username",
+      "Nome de usuário já usado", // <- key, message
+      async function (value) {
+        let canUseUsername = await axios.get(
+          `http://localhost:5000/users/username/${value}`
+        );
+        if (canUseUsername.data !== null) {
+          return false;
+        } else {
+          return true;
+        }
       }
     ),
   fullName: Yup.string().required("Nome completo obrigatório"),
   email: Yup.string()
     .email("E-mail inválido")
     .max(255)
-    .required("E-mail obrigatório"),
+    .required("E-mail obrigatório")
+    .test(
+      "Unique email",
+      "E-mail já usado", // <- key, message
+      async function (value) {
+        let canUseEmail = await axios.get(
+          `http://localhost:5000/users/email/${value}`
+        );
+        if (canUseEmail.data !== null) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    ),
   password: Yup.string().required("Senha obrigatória"),
   passwordConfirm: Yup.string().oneOf(
     [Yup.ref("password"), null],
