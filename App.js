@@ -6,7 +6,7 @@ import {
   DarkTheme,
 } from "@react-navigation/native";
 import TabComponent from "./src/components/TabComponent/TabComponent";
-import Login from "./src/screens/Login/Login";
+import Register from "./src/screens/Register/Register";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 
@@ -19,7 +19,7 @@ function App() {
       <StatusBar style="light" />
       <SafeAreaProvider>
         <StatusBar style="light" />
-        {userLogged ? <TabComponent /> : <Login />}
+        {userLogged ? <TabComponent /> : <Register />}
       </SafeAreaProvider>
     </NavigationContainer>
   );
