@@ -19,7 +19,7 @@ const SignupSchema = Yup.object().shape({
       "Nome de usuário já usado", // <- key, message
       async function (value) {
         let canUseUsername = await axios.get(
-          `http://localhost:5000/users/username/${value}`
+          `https://nameless-woodland-42415.herokuapp.com/users/username/${value}`
         );
         if (canUseUsername.data !== null) {
           return false;
@@ -38,7 +38,7 @@ const SignupSchema = Yup.object().shape({
       "E-mail já usado", // <- key, message
       async function (value) {
         let canUseEmail = await axios.get(
-          `http://localhost:5000/users/email/${value}`
+          `https://nameless-woodland-42415.herokuapp.com/users/email/${value}`
         );
         if (canUseEmail.data !== null) {
           return false;
@@ -64,7 +64,10 @@ const RegisterForm = () => {
       fullName: values.fullName,
       password: values.password,
     };
-    let res = axios.post("http://localhost:5000/users", payload);
+    let res = axios.post(
+      "https://nameless-woodland-42415.herokuapp.com/users",
+      payload
+    );
     let data = res.data;
     console.log(data);
   };

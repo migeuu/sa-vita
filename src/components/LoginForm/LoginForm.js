@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useTheme } from "@react-navigation/native";
@@ -24,35 +25,61 @@ const SignInSchema = Yup.object().shape({
         if (userExists.data !== null) {
           return true;
         } else {
-          return false; 
+          return false;
         }
       }
     ),
   password: Yup.string()
-  .required("Senha obrigatória"),
+    .required("Senha obrigatória")
+    .test("Correct password", "Senha incorreta", async function (value) {
+      try {
+        const username = this.parent.username;
+        let res = await axios.get(
+          `https://nameless-woodland-42415.herokuapp.com/users/username/${username}`
+        );
+        let userPass = res.data.password;
 
+        if (userPass == value) {
+          return true;
+        } else {
+          return false;
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    }),
 });
 
 const LoginForm = () => {
   const { colors } = useTheme();
 
-  const getUser = async(values) => {
+  const setUser = async (values) => {
     try {
-      let res = await axios.get(`https://nameless-woodland-42415.herokuapp.com/users/username/${values.username}`);
-      let data = res.data;
-      let userPass = data.password
-
-      if(userPass == values.password){
-        console.log("Login efetuado");
-      } else {
-        console.log("Errado burro");
+      let res = await axios.get(
+        `https://nameless-woodland-42415.herokuapp.com/users/username/${values.username}`
+      );
+      const userLogged = res.data.username;
+      try {
+        await AsyncStorage.setItem("@userlogged_key", userLogged);
+      } catch (error) {
+        console.error(error.message);
       }
-  
     } catch (error) {
-      console.error(error.message)
+      console.error(error.message);
     }
+  };
 
-   };
+  const allKeys = async () => {
+    let keys = [];
+    try {
+      keys = await AsyncStorage.getItem("@userlogged_key");
+      console.log(keys);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  allKeys();
 
   return (
     <Formik
@@ -64,7 +91,7 @@ const LoginForm = () => {
       validateOnBlur={false}
       validateOnChange={false}
       onSubmit={(values) => {
-        getUser(values);
+        setUser(values);
       }}
       validationSchema={SignInSchema}
     >
@@ -85,7 +112,7 @@ const LoginForm = () => {
           {errors.username && (
             <Text style={styles.errors}>{errors.username}</Text>
           )}
-        <TextInput
+          <TextInput
             style={[
               styles.input,
               { backgroundColor: colors.card, color: colors.text },
@@ -101,7 +128,7 @@ const LoginForm = () => {
           {errors.password && (
             <Text style={styles.errors}>{errors.password}</Text>
           )}
-          
+
           <View style={styles.buttonsBox}>
             <TouchableOpacity
               style={styles.buttonContainer}
