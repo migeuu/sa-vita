@@ -15,42 +15,44 @@ const SignInSchema = Yup.object().shape({
   username: Yup.string()
     .required("Nome de usuário obrigatório")
     .test(
-      "E-mail único",
-      "E-mail já usado", // <- key, message
-      function (value) {
-        return new Promise((resolve, reject) => {
-          axios
-            .get(`https://nameless-woodland-42415.herokuapp.com/users/username/${value}`)
-            .then((res) => {
-              resolve(true);
-            })
-            .catch((error) => {
-              if (
-                error.response.data.content ===
-                "The email has already been taken."
-              ) {
-                resolve(false);
-              }
-            });
-        });
+      "User Exists",
+      "Nome de usuário não existe", // <- key, message
+      async function (value) {
+        let userExists = await axios.get(
+          `https://nameless-woodland-42415.herokuapp.com/users/username/${value}`
+        );
+        if (userExists.data !== null) {
+          return true;
+        } else {
+          return false; 
+        }
       }
     ),
-  password: Yup.string().required("Senha obrigatória"),
+  password: Yup.string()
+  .required("Senha obrigatória"),
 
 });
 
 const LoginForm = () => {
   const { colors } = useTheme();
 
-  const getUser = (values) => {
-    let payload = {
-      username: values.username,
-      password: values.password,
-    };
-    let res = axios.get("http://localhost:5000/users", payload);
-    let data = res.data;
-    console.log(data);
-  };
+  const getUser = async(values) => {
+    try {
+      let res = await axios.get(`https://nameless-woodland-42415.herokuapp.com/users/username/${values.username}`);
+      let data = res.data;
+      let userPass = data.password
+
+      if(userPass == values.password){
+        console.log("Login efetuado");
+      } else {
+        console.log("Errado burro");
+      }
+  
+    } catch (error) {
+      console.error(error.message)
+    }
+
+   };
 
   return (
     <Formik
