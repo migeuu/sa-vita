@@ -2,48 +2,41 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
+  Button,
   Pressable,
   Appearance,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ContextApp } from "../../context/Context";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import axios from "axios";
 import ModalCustom from "../Modal/Modal";
 import { useTheme } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const colorScheme = Appearance.getColorScheme();
 
 const ModalContentProfile = () => {
+  const { user, setUser } = useContext(ContextApp);
+  const deletarPerfil = async () => {
+    try {
+      let deleteId = user.id;
+      const deleteUser = await axios.delete(
+        `https://nameless-woodland-42415.herokuapp.com/users/${deleteId}`
+      );
+      console.log(deleteUser.status);
+      AsyncStorage.clear();
+    } catch (e) {}
+  };
+
   return (
     <View style={styles.modalContent}>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
-      <Text>MODAL DE PERFIL!</Text>
+      <Button title="Deletar" onPress={deletarPerfil} />
     </View>
   );
 };
 
 const ProfileHeader = (props) => {
-  const openChat = () => {
-    console.log("Abrir chat do id do usuario");
-  };
-
   const { colors } = useTheme();
 
   const [isModalVisible, setModalVisible] = useState(false);
@@ -76,9 +69,6 @@ const ProfileHeader = (props) => {
         </Pressable>
       </View>
       <View style={styles.profileInfo}>
-        <View style={styles.imageContainer}>
-          <Image source={props.imageProfile} style={styles.imageProfile} />
-        </View>
         <View style={styles.infoContainer}>
           <View style={styles.infoContent}>
             <Text style={[styles.infoText, { color: colors.text }]}>
@@ -111,43 +101,19 @@ const ProfileHeader = (props) => {
           {props.title}
         </Text>
         <Text style={[styles.profileBioText, { color: colors.text }]}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
-          placeat dolor voluptate illum voluptates cumque minima assumenda
-          laborum exercitationem culpa.
+          {props.description}
         </Text>
       </View>
       <View style={styles.buttonContainer}>
         <Pressable
           style={[
-            props.isFollowing === true
-              ? styles.isFollowingStyle
-              : styles.followButton,
+            styles.buttonEdit,
             { color: colors.text, borderColor: colors.text },
           ]}
           onPress={props.followOnPress}
         >
-          <Text
-            style={[
-              styles.buttonText,
-              props.isFollowing === true
-                ? { color: colors.text }
-                : { color: "#000" },
-            ]}
-          >
-            {props.isFollowing === true ? "Seguindo" : "Seguir"}
-          </Text>
-        </Pressable>
-        <Pressable
-          style={[
-            styles.messageButton,
-            colorScheme == "dark"
-              ? { borderColor: "#fff" }
-              : { borderColor: "#000" },
-          ]}
-          onPress={openChat}
-        >
           <Text style={[styles.buttonText, { color: colors.text }]}>
-            Mensagem
+            Editar
           </Text>
         </Pressable>
         <Pressable style={styles.reportButton}>
@@ -180,16 +146,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  imageContainer: {
-    width: "30%",
-  },
-  imageProfile: {
-    width: 90,
-    height: 90,
-    borderRadius: 9999,
-  },
   infoContainer: {
-    width: "70%",
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
@@ -219,34 +177,18 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  followButton: {
-    backgroundColor: "#00c4cc",
-    width: "40%",
-    height: 40,
-    borderRadius: 6,
+  buttonEdit: {
+    display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-  },
-  isFollowingStyle: {
-    backgroundColor: "transparent",
-    borderWidth: 1.5,
-    width: "40%",
-    height: 40,
-    borderRadius: 6,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  messageButton: {
-    borderWidth: 1.5,
-    width: "43%",
-    height: 40,
-    borderRadius: 6,
-    justifyContent: "center",
-    alignItems: "center",
+    width: "85%",
+    borderWidth: 2,
+    borderRadius: 5,
+    borderColor: "white",
+    padding: 10,
   },
   buttonText: {
-    fontSize: 16,
-    fontWeight: "400",
+    textAlign: "center",
+    fontWeight: "bold",
   },
   reportButton: {
     width: 40,

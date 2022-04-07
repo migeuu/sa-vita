@@ -48,13 +48,6 @@ const ProfileBody = () => {
           </View>
         </TouchableOpacity>
       </View>
-      {post == true ? (
-        <Post />
-      ) : (
-        <View>
-          <Text>SOBRE</Text>
-        </View>
-      )}
     </View>
   );
 };

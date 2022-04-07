@@ -54,22 +54,26 @@ const SignupSchema = Yup.object().shape({
   ),
 });
 
-const RegisterForm = () => {
+const RegisterForm = ({ navigation }) => {
   const { colors } = useTheme();
 
   const createUser = (values) => {
-    let payload = {
-      username: values.username,
-      email: values.email,
-      fullName: values.fullName,
-      password: values.password,
-    };
-    let res = axios.post(
-      "https://nameless-woodland-42415.herokuapp.com/users",
-      payload
-    );
-    let data = res.data;
-    console.log(data);
+    try {
+      let payload = {
+        username: values.username,
+        email: values.email,
+        fullName: values.fullName,
+        password: values.password,
+      };
+      let res = axios.post(
+        "https://nameless-woodland-42415.herokuapp.com/users",
+        payload
+      );
+      let data = res.data;
+      navigation.navigate("Login");
+    } catch (e) {
+      console.error(e.message);
+    }
   };
 
   return (
@@ -178,7 +182,13 @@ const RegisterForm = () => {
             <Text
               style={[styles.textRegisterContainer, { color: colors.text }]}
             >
-              Tem uma conta? <Text style={styles.link}>Conecte-se</Text>
+              Tem uma conta?{" "}
+              <Text
+                style={styles.link}
+                onPress={() => navigation.navigate("Login")}
+              >
+                Conecte-se
+              </Text>
             </Text>
           </View>
         </View>

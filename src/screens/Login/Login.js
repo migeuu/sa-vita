@@ -11,7 +11,7 @@ import {
 import LoginForm from "../../components/LoginForm/LoginForm";
 import { useTheme } from "@react-navigation/native";
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const { colors } = useTheme();
 
   return (
@@ -26,10 +26,8 @@ const Login = () => {
           behavior={Platform.OS == "ios" ? "padding" : "height"}
           enabled={true}
         >
-          <Text style={[styles.titleForm, { color: colors.text }]}>
-            Login
-          </Text>
-          <LoginForm />
+          <Text style={[styles.titleForm, { color: colors.text }]}>Login</Text>
+          <LoginForm navigation={navigation} />
         </KeyboardAvoidingView>
       </View>
     </TouchableWithoutFeedback>

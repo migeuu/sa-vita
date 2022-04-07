@@ -1,28 +1,28 @@
-import * as React from "react";
-import { useColorScheme, View, Text, Image, StyleSheet } from "react-native";
+import React from "react";
+import { useColorScheme } from "react-native";
 import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
 } from "@react-navigation/native";
-import TabComponent from "./src/components/TabComponent/TabComponent";
-import Login from "./src/screens/LoginScreen/LoginScreen";
-import Register from "./src/screens/Register/Register";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
+import ContextProvider from "./src/context/Context";
+import LoggedValidation from "./src/screens/LoggedValidation";
 
 function App() {
   const scheme = useColorScheme();
-  const userLogged = false;
 
   return (
-    <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
-      <StatusBar style="light" />
-      <SafeAreaProvider>
+    <ContextProvider>
+      <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
         <StatusBar style="light" />
-        {userLogged ? <TabComponent /> : <Login />}
-      </SafeAreaProvider>
-    </NavigationContainer>
+        <SafeAreaProvider>
+          <StatusBar style="light" />
+          <LoggedValidation />
+        </SafeAreaProvider>
+      </NavigationContainer>
+    </ContextProvider>
   );
 }
 

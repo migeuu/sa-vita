@@ -1,31 +1,24 @@
 //importação de pacotes e componentes
-import React, { useState } from "react";
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import React, { useState, useContext } from "react";
+import { StyleSheet, Button } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import ProfileBody from "../../components/ProfileBody/ProfileBody";
+import { ContextApp } from "../../context/Context";
 
 const PerfilScreen = () => {
-
-  const [isFollowing, setIsFollowing] = useState(false);
-
-  // ISSUE - Tenho que criar um estado que seja booleano e que retorne um texto caso seja true e outro caso seja false
-  // ISSUE - O estado do componente FOLLOW_TEXT so atualiza quando é clicado pela segunda vez
-  // ISSUE FIX - Estado do isFollowing retorna diretamente no componente de texto o estado "SEGUIR"/"SEGUINDO".
-  const toggleIsFollowing = () => {
-    setIsFollowing(!isFollowing);
-  };
+  const { user, setUser } = useContext(ContextApp);
 
   return (
     <SafeAreaView style={styles.profileContainer}>
       <ProfileHeader
-        username="Bruno_Ecker"
-        followers={1591}
-        following={561}
-        postNumbers={32}
-        isFollowing={isFollowing}
-        followOnPress={toggleIsFollowing}
-        title="Cuidador | Programador | Surfista Amador | DesenvolvedorJS"
+        username={user.username}
+        followers={4}
+        following={2}
+        postNumbers={0}
+        title={user.fullName}
+        description={user.description}
       />
       <ProfileBody />
     </SafeAreaView>

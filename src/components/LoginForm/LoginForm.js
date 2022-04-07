@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   TextInput,
   Text,
   View,
   TouchableOpacity,
+  ActivityIndicator,
   StyleSheet,
 } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Formik } from "formik";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ContextApp } from "../../context/Context";
 import * as Yup from "yup";
 import { useTheme } from "@react-navigation/native";
 import axios from "axios";
@@ -50,36 +52,36 @@ const SignInSchema = Yup.object().shape({
     }),
 });
 
-const LoginForm = () => {
+const LoginForm = ({ navigation }) => {
   const { colors } = useTheme();
+  const { user, setUser } = useContext(ContextApp);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const setUser = async (values) => {
+  const getUser = async (values) => {
+    let username = values.username;
     try {
-      let res = await axios.get(
-        `https://nameless-woodland-42415.herokuapp.com/users/username/${values.username}`
+      setIsLoading(true);
+      const userRequest = await axios.get(
+        `http://localhost:5000/users/username/${username}`
       );
-      const userLogged = res.data.username;
-      try {
-        await AsyncStorage.setItem("@userlogged_key", userLogged);
-      } catch (error) {
-        console.error(error.message);
-      }
-    } catch (error) {
-      console.error(error.message);
+      const userData = userRequest.data;
+      let newValues = user;
+
+      newValues.id = userData.id;
+      newValues.username = userData.username;
+      newValues.fullName = userData.fullName;
+      newValues.description = userData.description;
+      newValues.email = userData.email;
+      newValues.password = userData.password;
+
+      setUser(newValues);
+      AsyncStorage.setItem("@userlogged_key", user.username);
+      setIsLoading(false);
+      console.log(user);
+    } catch (err) {
+      console.error(err.message);
     }
   };
-
-  const allKeys = async () => {
-    let keys = [];
-    try {
-      keys = await AsyncStorage.getItem("@userlogged_key");
-      console.log(keys);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  allKeys();
 
   return (
     <Formik
@@ -91,7 +93,8 @@ const LoginForm = () => {
       validateOnBlur={false}
       validateOnChange={false}
       onSubmit={(values) => {
-        setUser(values);
+        getUser(values);
+        navigation.navigate("Home");
       }}
       validationSchema={SignInSchema}
     >
@@ -129,6 +132,19 @@ const LoginForm = () => {
             <Text style={styles.errors}>{errors.password}</Text>
           )}
 
+          {isLoading ? (
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                marginVertical: 16,
+              }}
+            >
+              <ActivityIndicator size="large" />
+            </View>
+          ) : null}
+
           <View style={styles.buttonsBox}>
             <TouchableOpacity
               style={styles.buttonContainer}
@@ -141,7 +157,13 @@ const LoginForm = () => {
             <Text
               style={[styles.textRegisterContainer, { color: colors.text }]}
             >
-              Não tem uma conta? <Text style={styles.link}>Registre-se</Text>
+              Não tem uma conta?{" "}
+              <Text
+                style={styles.link}
+                onPress={() => navigation.navigate("Registro")}
+              >
+                Registre-se
+              </Text>
             </Text>
           </View>
         </View>

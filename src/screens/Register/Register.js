@@ -11,7 +11,7 @@ import {
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import { useTheme } from "@react-navigation/native";
 
-const Register = () => {
+const Register = ({ navigation }) => {
   const { colors } = useTheme();
 
   return (
@@ -29,7 +29,7 @@ const Register = () => {
           <Text style={[styles.titleForm, { color: colors.text }]}>
             Registrar
           </Text>
-          <RegisterForm />
+          <RegisterForm navigation={navigation}/>
         </KeyboardAvoidingView>
       </View>
     </TouchableWithoutFeedback>

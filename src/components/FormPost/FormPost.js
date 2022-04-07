@@ -17,17 +17,6 @@ const SignupSchema = Yup.object().shape({
   requirements: Yup.string().max(255, "Limite de caracteres excedido (255)"),
 });
 
-const getUsers = async () => {
-  try {
-    const allUsers = await axios.get(
-      "https://nameless-woodland-42415.herokuapp.com/users"
-    );
-    console.log(allUsers.data);
-  } catch (err) {
-    console.error(err.message);
-  }
-};
-
 const FormPost = () => {
   return (
     <Formik
@@ -39,7 +28,6 @@ const FormPost = () => {
       validateOnChange={true}
       validateOnSubmit={true}
       onSubmit={(values) => {
-        console.log(values);
       }}
       validationSchema={SignupSchema}
     >

@@ -49,7 +49,7 @@ const Post = (props) => {
     <View
       style={
         (styles.postContainer,
-        { backgroundColor: colors.card, marginBottom: 10 })
+        { backgroundColor: colors.card, marginBottom: 8 })
       }
     >
       <ModalCustom
@@ -67,7 +67,6 @@ const Post = (props) => {
         ]}
       >
         <View style={styles.profileContainer}>
-          <Image style={styles.profileImage} />
           <Text style={[styles.profileUsername, { color: colors.text }]}>
             {props.username}
           </Text>
