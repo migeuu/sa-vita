@@ -7,31 +7,31 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const DATA = [
   {
-    username: "Miguel Marquiori",
+    username: "Bruno Bandeira",
     id: 1,
     title: "Título 1",
-    description: "Gostaria de trabalhar com veias",
+    description: "Texto base padrão, lorem lorem lorem lorem lorem",
     requirements: "- Ter mais de 60 anos\n- Ter muito dinheiro na conta",
   },
   {
     username: "Paulinho Battistella",
     id: 2,
     title: "Título 2",
-    description: "Gostaria de trabalhar com veias",
+    description: "Texto base padrão, lorem lorem lorem lorem lorem",
     requirements: "- Ter mais de 60 anos\n- Ter muito dinheiro na conta",
   },
   {
     username: "Lucas Naspolini",
     id: 3,
     title: "Título 3",
-    description: "Gostaria de trabalhar com veias",
+    description: "Texto base padrão, lorem lorem lorem lorem lorem",
     requirements: "- Ter mais de 60 anos\n- Ter muito dinheiro na conta",
   },
   {
-    username: "Ismael Silva Teixeira",
+    username: "Fernando",
     id: 4,
     title: "Título 4",
-    description: "Gostaria de trabalhar com veias",
+    description: "Texto base padrão, lorem lorem lorem lorem lorem",
     requirements: "- Ter mais de 60 anos\n- Ter muito dinheiro na conta",
   },
 ];
