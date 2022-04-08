@@ -15,7 +15,7 @@ const LoggedValidation = () => {
     if (itemStored) {
       try {
         const userLocallyLogged = await axios.get(
-          `http://localhost:5000/users/username/${itemStored}`
+          `https://nameless-woodland-42415.herokuapp.com/users/username/${itemStored}`
         );
         const userData = userLocallyLogged.data;
         let newValues = user;

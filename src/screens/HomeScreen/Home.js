@@ -11,28 +11,28 @@ const DATA = [
     id: 1,
     title: "Título 1",
     description: "Texto base padrão, lorem lorem lorem lorem lorem",
-    requirements: "- Ter mais de 60 anos\n- Ter muito dinheiro na conta",
+    requirements: "- Haver VR de R$100\n- Ter muito dinheiro na conta",
   },
   {
     username: "Paulinho Battistella",
     id: 2,
     title: "Título 2",
     description: "Texto base padrão, lorem lorem lorem lorem lorem",
-    requirements: "- Ter mais de 60 anos\n- Ter muito dinheiro na conta",
+    requirements: "- Haver VR de R$100\n- Ter muito dinheiro na conta",
   },
   {
     username: "Lucas Naspolini",
     id: 3,
     title: "Título 3",
     description: "Texto base padrão, lorem lorem lorem lorem lorem",
-    requirements: "- Ter mais de 60 anos\n- Ter muito dinheiro na conta",
+    requirements: "- Haver VR de R$100\n- Ter muito dinheiro na conta",
   },
   {
     username: "Fernando",
     id: 4,
     title: "Título 4",
     description: "Texto base padrão, lorem lorem lorem lorem lorem",
-    requirements: "- Ter mais de 60 anos\n- Ter muito dinheiro na conta",
+    requirements: "- Haver VR de R$100\n- Ter muito dinheiro na conta",
   },
 ];
 

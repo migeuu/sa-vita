@@ -60,13 +60,19 @@ const LoginForm = ({ navigation }) => {
   const getUser = async (values) => {
     let username = values.username;
     try {
+      // Activity Indicator não está funcionando - ISSUE
       setIsLoading(true);
+
+      // Fazendo request baseado no usuário que foi autorizado para setar o Contexto
       const userRequest = await axios.get(
-        `http://localhost:5000/users/username/${username}`
+        `https://nameless-woodland-42415.herokuapp.com/users/username/${username}`
       );
+
+      // Pegando apenas os dados da requisição
       const userData = userRequest.data;
       let newValues = user;
 
+      // Estes valores estão sendo a unica maneira de ser setados - ISSUE
       newValues.id = userData.id;
       newValues.username = userData.username;
       newValues.fullName = userData.fullName;
@@ -76,7 +82,10 @@ const LoginForm = ({ navigation }) => {
 
       setUser(newValues);
       AsyncStorage.setItem("@userlogged_key", user.username);
+
+      // Activity Indicator não está funcionando - ISSUE
       setIsLoading(false);
+
       console.log(user);
     } catch (err) {
       console.error(err.message);
